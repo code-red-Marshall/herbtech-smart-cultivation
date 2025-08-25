@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Ultra-Realistic Plant Animations */
+@layer components {
+  /* Natural leaf swaying with wind effect - botanically accurate */
+  @keyframes leafSway {
+    0%, 100% { 
+      transform: rotate(0deg) scale(1); 
+      opacity: 0.9;
+    }
+    25% { 
+      transform: rotate(3deg) scale(1.12); 
+      opacity: 1;
+    }
+    50% { 
+      transform: rotate(0deg) scale(1.06); 
+      opacity: 0.95;
+    }
+    75% { 
+      transform: rotate(-3deg) scale(1.12); 
+      opacity: 1;
+    }
+  }
+
+  /* Gentle stem movement - mimics real plant behavior */
+  @keyframes stemSway {
+    0%, 100% { 
+      transform: rotate(0deg); 
+    }
+    25% { 
+      transform: rotate(0.3deg); 
+    }
+    75% { 
+      transform: rotate(-0.3deg); 
+    }
+  }
+
+  /* Realistic plant growth from seed */
+  @keyframes plantGrow {
+    0% { 
+      transform: scale(0.2) translateY(40px); 
+      opacity: 0.3;
+      filter: blur(2px);
+    }
+    25% { 
+      transform: scale(0.4) translateY(30px); 
+      opacity: 0.6;
+      filter: blur(1px);
+    }
+    50% { 
+      transform: scale(0.7) translateY(20px); 
+      opacity: 0.8;
+      filter: blur(0.5px);
+    }
+    75% { 
+      transform: scale(0.9) translateY(10px); 
+      opacity: 0.95;
+      filter: blur(0.2px);
+    }
+    100% { 
+      transform: scale(1) translateY(0); 
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+
+  /* Environmental humidity droplets with realistic physics */
+  @keyframes humidityDrop {
+    0% { 
+      transform: translateY(-15px) scale(0.6); 
+      opacity: 0;
+    }
+    20% { 
+      opacity: 0.4;
+    }
+    50% { 
+      transform: translateY(10px) scale(1.1); 
+      opacity: 0.8;
+    }
+    80% { 
+      opacity: 0.6;
+    }
+    100% { 
+      transform: translateY(25px) scale(1.3); 
+      opacity: 0;
+    }
+  }
+
+  /* Dynamic light intensity with realistic flicker */
+  @keyframes lightPulse {
+    0%, 100% { 
+      opacity: 0.3; 
+      filter: brightness(1) saturate(1);
+    }
+    25% { 
+      opacity: 0.7; 
+      filter: brightness(1.1) saturate(1.1);
+    }
+    50% { 
+      opacity: 0.9; 
+      filter: brightness(1.2) saturate(1.2);
+    }
+    75% { 
+      opacity: 0.6; 
+      filter: brightness(1.05) saturate(1.05);
+    }
+  }
+
+  /* Soil moisture effect with realistic saturation */
+  @keyframes soilMoisture {
+    0%, 100% { 
+      filter: saturate(1) brightness(1) contrast(1);
+    }
+    50% { 
+      filter: saturate(1.4) brightness(1.15) contrast(1.1);
+    }
+  }
+
+  /* Plant breathing effect - mimics photosynthesis */
+  @keyframes plantBreathe {
+    0%, 100% { 
+      transform: scale(1); 
+      filter: brightness(1);
+    }
+    50% { 
+      transform: scale(1.015); 
+      filter: brightness(1.05);
+    }
+  }
+
+  /* Detailed flower blooming with petal unfurling */
+  @keyframes flowerBloom {
+    0% { 
+      transform: scale(0) rotate(0deg); 
+      opacity: 0;
+      filter: blur(3px);
+    }
+    30% { 
+      transform: scale(0.6) rotate(120deg); 
+      opacity: 0.4;
+      filter: blur(1px);
+    }
+    60% { 
+      transform: scale(1.1) rotate(240deg); 
+      opacity: 0.8;
+      filter: blur(0.5px);
+    }
+    100% { 
+      transform: scale(1) rotate(360deg); 
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+
+  /* Berry ripening with color and size changes */
+  @keyframes berryRipen {
+    0% { 
+      transform: scale(0.6); 
+      filter: hue-rotate(0deg) saturate(0.8);
+    }
+    30% { 
+      transform: scale(0.9); 
+      filter: hue-rotate(15deg) saturate(1.1);
+    }
+    60% { 
+      transform: scale(1.05); 
+      filter: hue-rotate(25deg) saturate(1.3);
+    }
+    100% { 
+      transform: scale(1); 
+      filter: hue-rotate(0deg) saturate(1);
+    }
+  }
+
+  /* Leaf vein pulsing - mimics nutrient flow */
+  @keyframes veinPulse {
+    0%, 100% { 
+      opacity: 0.4; 
+      stroke-width: 0.8;
+    }
+    50% { 
+      opacity: 0.8; 
+      stroke-width: 1.2;
+    }
+  }
+
+  /* Stem texture animation - mimics bark growth */
+  @keyframes barkTexture {
+    0%, 100% { 
+      opacity: 0.3; 
+      stroke-dasharray: 2,3;
+    }
+    50% { 
+      opacity: 0.6; 
+      stroke-dasharray: 3,2;
+    }
+  }
+
+  /* Environmental wind effect on leaves */
+  @keyframes windEffect {
+    0%, 100% { 
+      transform: rotate(0deg) translateX(0px); 
+    }
+    25% { 
+      transform: rotate(1deg) translateX(0.5px); 
+    }
+    50% { 
+      transform: rotate(0deg) translateX(0px); 
+    }
+    75% { 
+      transform: rotate(-1deg) translateX(-0.5px); 
+    }
+  }
+
+  /* Sunlight filtering through leaves */
+  @keyframes sunlightFilter {
+    0%, 100% { 
+      opacity: 0.3; 
+      filter: brightness(1) hue-rotate(0deg);
+    }
+    50% { 
+      opacity: 0.7; 
+      filter: brightness(1.3) hue-rotate(5deg);
+    }
+  }
+
+  /* Root growth simulation */
+  @keyframes rootGrowth {
+    0% { 
+      transform: scaleY(0); 
+      opacity: 0;
+    }
+    50% { 
+      transform: scaleY(0.7); 
+      opacity: 0.6;
+    }
+    100% { 
+      transform: scaleY(1); 
+      opacity: 1;
+    }
+  }
+
+  /* Pollen dispersal effect */
+  @keyframes pollenDisperse {
+    0% { 
+      transform: scale(0) rotate(0deg); 
+      opacity: 0;
+    }
+    50% { 
+      transform: scale(1.2) rotate(180deg); 
+      opacity: 0.8;
+    }
+    100% { 
+      transform: scale(0) rotate(360deg); 
+      opacity: 0;
+    }
+  }
+}

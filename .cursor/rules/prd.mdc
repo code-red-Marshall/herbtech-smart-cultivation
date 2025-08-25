@@ -1,0 +1,255 @@
+📄 Product Requirements Document (PRD)
+
+Product: HerbTech Smart Cultivation MVP (Web App, No Hardware) Version:
+MVP v1.0 Date: Aug 2025
+
+1.  Feature Scope In Scope (MVP)
+
+Simulator Service: Generates fake telemetry (tempC, rh, soil, lux) every
+few seconds, with time-acceleration and noise.
+
+Backend API (Fastify/Node.js):
+
+Receives telemetry from MQTT.
+
+Stores latest readings (DB).
+
+Runs control loop (watering, lighting, safety).
+
+Publishes actuator commands to MQTT.
+
+Exposes WebSocket for live dashboard updates.
+
+Dashboard (Next.js/React):
+
+Appliance-style UI:
+
+Left: two pod tiles (Brahmi, Ashwagandha).
+
+Right: stats panel (pH, Soil M, Hum, NPK, Light).
+
+Real-time updates via WebSocket.
+
+Toasts for events (watering, thermal safety).
+
+Settings page: edit setpoints, toggle AUTO/MANUAL, reset defaults.
+
+Charts page: 24h history for key metrics.
+
+Docker Compose orchestration for simulator, broker, API, dashboard, DB.
+
+Out of Scope (Future Phases)
+
+Real hardware (ESP32, actual sensors).
+
+Marketplace / export workflows.
+
+Authentication and user accounts.
+
+Multi-pod management.
+
+Advanced AI (growth prediction, image-based monitoring).
+
+2.  User Stories & Acceptance Criteria
+
+US1: Live Dashboard
+
+Given I am on the dashboard
+
+When the simulator publishes telemetry
+
+Then I should see Soil, Humidity, Temp, Light update within 2s.
+
+US2: Auto-Watering
+
+Given soil moisture \< soilMin
+
+When control loop runs
+
+Then pump should activate for configured wateringMs and Soil M value
+should rise.
+
+US3: Photoperiod Lighting
+
+Given the current time is within configured photoperiod
+
+When control loop runs
+
+Then LED should be ON, capped by ledMaxPWM.
+
+And if temp \> 35°C, LED power is halved until temp \< 34°C.
+
+US4: Manual Override
+
+Given I am in MANUAL mode
+
+When I press "Prime Pump"
+
+Then pump should activate for 2s and telemetry should reflect the
+change.
+
+US5: Settings Persistence
+
+Given I change soilMin from 32% to 40%
+
+When I refresh the dashboard
+
+Then new soilMin should remain in effect.
+
+US6: Charts
+
+Given I visit the charts page
+
+When telemetry is collected
+
+Then I should see graphs for temp, RH, soil, lux, and actuator events
+over last 24h (sim-time).
+
+3.  Non-Functional Requirements
+
+Performance: WebSocket broadcast \<200ms after telemetry received.
+
+Reliability: Simulator continues if API drops; API retries MQTT
+connection.
+
+Validation: All MQTT payloads validated via Zod.
+
+Security (MVP): Local dev only; bind to localhost; CORS restricted to
+dashboard.
+
+Code Quality: TypeScript strict, ESLint, Prettier, Jest coverage on
+control-logic.
+
+4.  UX / Information Architecture
+
+Dashboard (default):
+
+Left: 2 pod tiles with plant labels.
+
+Right: Stats panel: pH, Soil M, Hum, NPK, Light.
+
+Live numbers update.
+
+Toasts: "Auto-watering triggered," "Thermal cap active."
+
+Charts Page: Line charts (24h sim-time).
+
+Settings Page: Editable setpoints, AUTO/MANUAL toggle, Reset button.
+
+5.  System Architecture
+
+Flow:
+
+sim → MQTT broker (Mosquitto) → API (Fastify) → WebSocket → Dashboard
+API (control loop) → MQTT broker → sim (apply commands)
+
+Services:
+
+Simulator: Publishes telemetry → listens for control commands.
+
+Mosquitto (MQTT): Message broker, channels:
+
+herbtech/pod1/telemetry
+
+herbtech/pod1/control
+
+herbtech/pod1/config
+
+API: Validates telemetry, stores in DB, runs control loop.
+
+Dashboard: Connects to API WebSocket + REST.
+
+DB: Postgres (telemetry history, config persistence).
+
+6.  API Surface
+
+GET /health → { ok: true }
+
+GET /telemetry/latest → latest readings
+
+GET /config → current setpoints
+
+POST /config → update setpoints
+
+POST /control → manual commands
+
+WS /ws → live telemetry push
+
+7.  Control Logic Spec
+
+Watering:
+
+If soil \< soilMin and cooldown \> 60s → pump = wateringPWM for
+wateringMs.
+
+Don't re-arm until soil \> soilMax.
+
+Lighting:
+
+Within photoperiod → LED ON up to ledMaxPWM.
+
+Outside photoperiod → LED OFF.
+
+Thermal Safety:
+
+If temp \> 35°C → cap LED to 50%.
+
+Resume normal when temp \< 34°C.
+
+8.  Simulator Spec
+
+Time Warp: SIM_FACTOR=60 (1 real sec = 1 sim min).
+
+Soil: Decreases 0.02 ± 0.005 per tick; increases when pump runs.
+
+Temp: Drifts toward ambient + LED heat.
+
+Humidity: Inverse relation to temp, noise added.
+
+Lux: Proportional to ledPWM, ± noise.
+
+Publish: Every 5--10 sim-seconds.
+
+Handles: Control messages (pumpPWM, ledPWM), stops pump after
+wateringMs.
+
+9.  Project File-Structure herbtech-mvp/ apps/ api/ \# Fastify API
+    dashboard/ \# Next.js dashboard sim/ \# Node.js simulator packages/
+    shared-types/ \# Zod schemas control-logic/ \# Rule engine docs/ \#
+    PRD, architecture, testing infra/ docker-compose.yml .cursor/
+    rules.md README.md
+
+10. Milestones & Success Metrics
+
+M1: Docker Compose boots all services, dashboard shows live telemetry.
+
+M2: Control loop runs → auto-watering visible.
+
+M3: Settings persist, manual override works, charts page functional.
+
+Metrics:
+
+Soil \< soilMin → pump ON within 10s.
+
+Live data visible \<30s after startup.
+
+Dashboard stable 24h (sim-time).
+
+11. Testing Plan
+
+Unit Tests: control-logic (watering hysteresis, photoperiod, thermal
+cap).
+
+Integration Tests: sim→MQTT→API→dashboard data flow.
+
+E2E Test: Run Docker Compose, assert watering triggers under low soil.
+
+12. Risks & Mitigations
+
+MQTT disconnects: Retry with exponential backoff.
+
+Noisy data: Use median filter in simulator.
+
+Over-watering loops: Enforce cooldown + hysteresis.
+
+Dashboard desync: Reconnect WS on failure, fallback to polling.
