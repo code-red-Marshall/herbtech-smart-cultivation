@@ -26,7 +26,7 @@ import { useDemoTelemetry } from '@/hooks/useDemoTelemetry';
 import { Settings as SettingsType } from '@/types';
 
 export function SettingsForm() {
-  const { 
+  const {
     environmentalConditions, 
     systemStatus, 
     plantHealth,
@@ -38,7 +38,7 @@ export function SettingsForm() {
     photoperiodHours: 16,
     soilMin: 50,
     soilMax: 70,
-    ledPWM: 75,
+      ledPWM: 75,
     wateringMs: 5000,
     targetTemp: 22,
     targetHumidity: 65,
@@ -103,7 +103,6 @@ export function SettingsForm() {
   const getEnvironmentalStatus = (current: number, target: number, tolerance: number = 2) => {
     const diff = Math.abs(current - target);
     if (diff <= tolerance) return { status: 'Optimal', color: 'text-green-600', bgColor: 'bg-green-50' };
-    if (diff <= tolerance * 2) return { status: 'Good', color: 'text-yellow-600', bgColor: 'bg-yellow-50' };
     return { status: 'Needs Attention', color: 'text-red-600', bgColor: 'bg-red-50' };
   };
 
@@ -112,8 +111,6 @@ export function SettingsForm() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">System Settings</h1>
-          <p className="text-gray-600 mt-2">Configure your smart garden system</p>
         </div>
         <div className="flex items-center gap-3">
           {lastSaved && (
@@ -380,17 +377,17 @@ export function SettingsForm() {
               />
               <span className="text-sm text-gray-500">ms</span>
             </div>
-          </div>
+        </div>
 
           {/* Soil Moisture Range */}
           <div className="space-y-3">
             <Label>Soil Moisture Range</Label>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
                 <Label htmlFor="soilMin" className="text-sm">Minimum</Label>
-                <Input
-                  id="soilMin"
-                  type="number"
+            <Input
+              id="soilMin"
+              type="number"
                   value={settings.soilMin}
                   onChange={(e) => handleSettingChange('soilMin', parseInt(e.target.value))}
                   disabled={!isEditing}
@@ -398,12 +395,12 @@ export function SettingsForm() {
                   min="20"
                   max="80"
                 />
-              </div>
-              <div>
+          </div>
+          <div>
                 <Label htmlFor="soilMax" className="text-sm">Maximum</Label>
-                <Input
-                  id="soilMax"
-                  type="number"
+            <Input
+              id="soilMax"
+              type="number"
                   value={settings.soilMax}
                   onChange={(e) => handleSettingChange('soilMax', parseInt(e.target.value))}
                   disabled={!isEditing}
@@ -446,14 +443,14 @@ export function SettingsForm() {
             <div className="space-y-1">
               <Label htmlFor="autoLighting">Automatic Lighting</Label>
               <p className="text-sm text-gray-500">Automatically control LED lights based on photoperiod</p>
-            </div>
+        </div>
             <Switch
               id="autoLighting"
               checked={settings.autoLighting}
               onCheckedChange={(checked) => handleSettingChange('autoLighting', checked)}
               disabled={!isEditing}
             />
-          </div>
+        </div>
 
           <Separator />
 

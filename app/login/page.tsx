@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Leaf, 
   Lock, 
   User, 
   Eye, 
@@ -18,6 +17,7 @@ import {
   Activity,
   Zap
 } from 'lucide-react';
+import { HerbTechLogo } from '@/components/HerbTechLogo';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -57,12 +57,9 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo and Brand */}
         <div className="text-center mb-8 sm:mb-12">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-xl">
-            <Leaf className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <HerbTechLogo size="xl" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-light text-slate-900 mb-4 sm:mb-6 tracking-tight">
-            HerbTech
-          </h1>
           <p className="text-base sm:text-lg text-slate-600 font-normal max-w-sm mx-auto leading-relaxed mb-6 sm:mb-8">
             Intelligent hydroponic cultivation system with real-time monitoring and automated control
           </p>

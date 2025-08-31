@@ -17,7 +17,7 @@ export function PodTile({ name }: PodTileProps) {
   // Get latest readings for this pod
   const latestReading = telemetry && Array.isArray(telemetry) && telemetry.length > 0
     ? telemetry
-        .filter(t => t.pod.toLowerCase() === name.toLowerCase())
+    .filter(t => t.pod.toLowerCase() === name.toLowerCase())
         .slice(-1)[0]
     : null;
   
@@ -68,16 +68,16 @@ export function PodTile({ name }: PodTileProps) {
             
             {/* Plant */}
             <div className="relative z-10 h-full flex items-end justify-center pb-12">
-              <AnimatedPlant
+            <AnimatedPlant
                 type={plantKey}
-                soilMoisture={soilMoisture}
-                temperature={temperature}
-                humidity={humidity}
-                lightIntensity={lightIntensity}
+              soilMoisture={soilMoisture}
+              temperature={temperature}
+              humidity={humidity}
+              lightIntensity={lightIntensity}
                 className="scale-90"
-              />
-            </div>
-            
+            />
+          </div>
+          
             {/* Black Tube */}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
               <div className="w-2 h-14 bg-slate-800 rounded-full opacity-80 shadow-lg"></div>
@@ -157,9 +157,9 @@ export function PodTile({ name }: PodTileProps) {
                 </div>
                 <div className="text-xl font-light text-yellow-900 mb-1">{Math.round(lightIntensity / 100)}k</div>
                 <div className="text-xs text-yellow-600 font-medium">Light</div>
-              </div>
-            </div>
-
+        </div>
+      </div>
+      
             {/* Stress Indicator */}
             {stress > 0.3 && (
               <div className="flex items-center justify-center gap-3 text-sm text-orange-600 bg-gradient-to-r from-orange-50/80 to-orange-100/80 p-4 rounded-xl border border-orange-200/50">
@@ -178,8 +178,8 @@ export function PodTile({ name }: PodTileProps) {
                 <Leaf className="w-4 h-4 mr-2 inline" />
                 View Details
               </button>
-            </div>
-          </div>
+        </div>
+      </div>
         </CardContent>
       </Card>
     </div>

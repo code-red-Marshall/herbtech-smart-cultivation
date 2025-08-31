@@ -29,9 +29,9 @@ function ConnectionBadge() {
 }
 
 export function StatsPanel() {
-  const telemetry = useDemoTelemetry();
+  const { telemetry } = useDemoTelemetry();
   
-  const latest = telemetry.slice(-1)[0];
+  const latest = telemetry ? telemetry.slice(-1)[0] : undefined;
   
   if (!latest) {
     return (

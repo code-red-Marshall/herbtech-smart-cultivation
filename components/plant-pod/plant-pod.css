@@ -1,0 +1,349 @@
+/* Plant Pod - Plant Roots Connected to Soil with Synchronized Tint */
+
+.plant-pod-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+/* NEW CANOPY - Built from scratch */
+.pod-canopy {
+  width: 100%;
+  height: 40px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Canopy Glow - The light source that changes color */
+.canopy-glow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  animation: canopyPulse 3s ease-in-out infinite;
+}
+
+/* Canopy Pulse Animation */
+@keyframes canopyPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Luminance-based canopy colors - White to Yellow transition */
+.canopy-glow[data-light-intensity="0.1"] {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.canopy-glow[data-light-intensity="0.2"] {
+  background: linear-gradient(180deg, #fefefe 0%, #f7f8f9 100%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.canopy-glow[data-light-intensity="0.3"] {
+  background: linear-gradient(180deg, #fefdfc 0%, #f6f7f8 100%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+.canopy-glow[data-light-intensity="0.4"] {
+  background: linear-gradient(180deg, #fefcf9 0%, #f5f6f7 100%);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+
+.canopy-glow[data-light-intensity="0.5"] {
+  background: linear-gradient(180deg, #fefbf6 0%, #f4f5f6 100%);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.7);
+}
+
+.canopy-glow[data-light-intensity="0.6"] {
+  background: linear-gradient(180deg, #fefaf3 0%, #f3f4f5 100%);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+}
+
+.canopy-glow[data-light-intensity="0.7"] {
+  background: linear-gradient(180deg, #fef9f0 0%, #f2f3f4 100%);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+}
+
+.canopy-glow[data-light-intensity="0.8"] {
+  background: linear-gradient(180deg, #fef8ed 0%, #f1f2f3 100%);
+  box-shadow: 0 0 22px rgba(255, 255, 255, 1.0);
+}
+
+.canopy-glow[data-light-intensity="0.9"] {
+  background: linear-gradient(180deg, #fef7ea 0%, #f0f1f2 100%);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 1.0);
+}
+
+.canopy-glow[data-light-intensity="1.0"] {
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+  box-shadow: 0 0 26px rgba(253, 230, 138, 0.8);
+}
+
+/* Plant and Soil Container - Single unit where plant connects to soil */
+.plant-soil-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Plant Image Container - Positioned to connect with soil */
+.plant-image-container {
+  width: 300px;
+  height: 380px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.plant-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+.plant-image:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
+
+/* Plant Background Tint - Synchronized with canopy glow */
+.plant-image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(254, 243, 199, 0.1) 0%, rgba(253, 230, 138, 0.05) 50%, rgba(245, 158, 11, 0.02) 100%);
+  border-radius: 8px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Apply tint effect based on light intensity */
+.plant-image-container[data-light-intensity="0.1"]::before { opacity: 0.05; }
+.plant-image-container[data-light-intensity="0.2"]::before { opacity: 0.1; }
+.plant-image-container[data-light-intensity="0.3"]::before { opacity: 0.15; }
+.plant-image-container[data-light-intensity="0.4"]::before { opacity: 0.2; }
+.plant-image-container[data-light-intensity="0.5"]::before { opacity: 0.25; }
+.plant-image-container[data-light-intensity="0.6"]::before { opacity: 0.3; }
+.plant-image-container[data-light-intensity="0.7"]::before { opacity: 0.35; }
+.plant-image-container[data-light-intensity="0.8"]::before { opacity: 0.4; }
+.plant-image-container[data-light-intensity="0.9"]::before { opacity: 0.45; }
+.plant-image-container[data-light-intensity="1.0"]::before { opacity: 0.5; }
+
+/* Water Drop Animation */
+.water-drop {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+  border-radius: 50% 50% 50% 5px;
+  transform: rotate(-45deg);
+  z-index: 10;
+  animation: waterDropFall 2s ease-in-out forwards;
+}
+
+.water-drop-1 {
+  top: 20px;
+  left: 60px;
+  animation-delay: 0s;
+}
+
+.water-drop-2 {
+  top: 40px;
+  left: 120px;
+  animation-delay: 0.3s;
+}
+
+.water-drop-3 {
+  top: 60px;
+  left: 180px;
+  animation-delay: 0.6s;
+}
+
+@keyframes waterDropFall {
+  0% {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: rotate(-45deg) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(200px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) translateY(250px) scale(0.6);
+  }
+}
+
+/* Plant Growth Animation During Watering */
+.plant-image-container.watering .plant-image {
+  animation: plantGrowth 3s ease-in-out;
+}
+
+@keyframes plantGrowth {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Soil Tub - Where roots are embedded, positioned to connect with plant */
+.soil-tub {
+  width: 100%;
+  height: 100px;
+  background: #8B4513;
+  border: 2px solid #654321;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  overflow: visible;
+}
+
+.soil-texture {
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, #A0522D 0%, #8B4513 50%, #654321 100%),
+    radial-gradient(circle at 20% 30%, rgba(168, 85, 7, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(120, 53, 15, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 15% 25%, rgba(160, 82, 45, 0.2) 0%, transparent 3px),
+    radial-gradient(circle at 35% 45%, rgba(139, 69, 19, 0.3) 0%, transparent 4px),
+    radial-gradient(circle at 55% 65%, rgba(101, 67, 33, 0.2) 0%, transparent 3px),
+    radial-gradient(circle at 75% 35%, rgba(160, 82, 45, 0.2) 0%, transparent 4px);
+  border-radius: 18px;
+  position: relative;
+}
+
+/* Soil Moisture Effect During Watering */
+.soil-moisture-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(135, 206, 235, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(70, 130, 180, 0.2) 0%, transparent 50%);
+  border-radius: 18px;
+  animation: soilMoisture 3s ease-in-out;
+}
+
+@keyframes soilMoisture {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Watering Button */
+.watering-button {
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+  margin-top: 16px;
+}
+
+.watering-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -1px rgba(59, 130, 246, 0.4);
+}
+
+.watering-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .plant-pod-container {
+    max-width: 100%;
+    padding: 16px;
+  }
+  
+  .plant-soil-container {
+    height: 350px;
+  }
+  
+  .plant-image-container {
+    width: 260px;
+    height: 330px;
+  }
+  
+  .soil-tub {
+    height: 80px;
+  }
+  
+  .watering-button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}

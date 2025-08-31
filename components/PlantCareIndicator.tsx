@@ -7,11 +7,11 @@ interface PlantCareIndicatorProps {
 }
 
 export function PlantCareIndicator({ podName }: PlantCareIndicatorProps) {
-  const telemetry = useDemoTelemetry();
+  const { telemetry } = useDemoTelemetry();
   
   const latestReading = telemetry
-    .filter(t => t.pod.toLowerCase() === podName.toLowerCase())
-    .slice(-1)[0];
+    ? telemetry.filter(t => t.pod.toLowerCase() === podName.toLowerCase()).slice(-1)[0]
+    : undefined;
   
   if (!latestReading) return null;
 

@@ -5,10 +5,10 @@ import { useDemoTelemetry } from '@/hooks/useDemoTelemetry';
 import { format } from 'date-fns';
 
 export function Charts() {
-  const telemetry = useDemoTelemetry();
+  const { telemetry } = useDemoTelemetry();
   
   // Get last 24 hours of data
-  const last24h = telemetry.slice(-720); // 720 readings = 24 hours at 2-minute intervals
+  const last24h = telemetry ? telemetry.slice(-720) : []; // 720 readings = 24 hours at 2-minute intervals
   
   const chartData = last24h.map(reading => ({
     time: format(new Date(reading.ts), 'HH:mm'),

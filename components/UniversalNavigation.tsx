@@ -53,8 +53,8 @@ export function UniversalNavigation() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-sm">
-                <Leaf className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm">
+                <Leaf className="w-5 h-5 text-white" strokeWidth={2} />
               </div>
               <span className="text-xl font-light text-slate-900">HerbTech</span>
             </div>
@@ -77,8 +77,8 @@ export function UniversalNavigation() {
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm">
-              <Leaf className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm">
+              <Leaf className="w-4 h-4 sm:w-5 sm:h-5 text-white" strokeWidth={2} />
             </div>
             <span className="text-lg sm:text-xl font-light text-slate-900">HerbTech</span>
           </div>
