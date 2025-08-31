@@ -159,17 +159,47 @@
   transition: opacity 0.3s ease;
 }
 
-/* Apply tint effect based on light intensity */
-.plant-image-container[data-light-intensity="0.1"]::before { opacity: 0.05; }
-.plant-image-container[data-light-intensity="0.2"]::before { opacity: 0.1; }
-.plant-image-container[data-light-intensity="0.3"]::before { opacity: 0.15; }
-.plant-image-container[data-light-intensity="0.4"]::before { opacity: 0.2; }
-.plant-image-container[data-light-intensity="0.5"]::before { opacity: 0.25; }
-.plant-image-container[data-light-intensity="0.6"]::before { opacity: 0.3; }
-.plant-image-container[data-light-intensity="0.7"]::before { opacity: 0.35; }
-.plant-image-container[data-light-intensity="0.8"]::before { opacity: 0.4; }
-.plant-image-container[data-light-intensity="0.9"]::before { opacity: 0.45; }
-.plant-image-container[data-light-intensity="1.0"]::before { opacity: 0.5; }
+/* Apply realistic tint effect based on light intensity */
+.plant-image-container[data-light-intensity="0.1"]::before { 
+  opacity: 0.02; 
+  background: linear-gradient(180deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.05) 50%, rgba(139, 69, 19, 0.02) 100%);
+}
+.plant-image-container[data-light-intensity="0.2"]::before { 
+  opacity: 0.04; 
+  background: linear-gradient(180deg, rgba(160, 82, 45, 0.08) 0%, rgba(139, 69, 19, 0.04) 50%, rgba(160, 82, 45, 0.02) 100%);
+}
+.plant-image-container[data-light-intensity="0.3"]::before { 
+  opacity: 0.06; 
+  background: linear-gradient(180deg, rgba(184, 134, 11, 0.06) 0%, rgba(160, 82, 45, 0.03) 50%, rgba(184, 134, 11, 0.01) 100%);
+}
+.plant-image-container[data-light-intensity="0.4"]::before { 
+  opacity: 0.08; 
+  background: linear-gradient(180deg, rgba(218, 165, 32, 0.04) 0%, rgba(184, 134, 11, 0.02) 50%, rgba(218, 165, 32, 0.01) 100%);
+}
+.plant-image-container[data-light-intensity="0.5"]::before { 
+  opacity: 0.1; 
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.02) 0%, rgba(218, 165, 32, 0.01) 50%, rgba(255, 215, 0, 0.005) 100%);
+}
+.plant-image-container[data-light-intensity="0.6"]::before { 
+  opacity: 0.12; 
+  background: linear-gradient(180deg, rgba(255, 255, 0, 0.03) 0%, rgba(255, 215, 0, 0.015) 50%, rgba(255, 255, 0, 0.008) 100%);
+}
+.plant-image-container[data-light-intensity="0.7"]::before { 
+  opacity: 0.15; 
+  background: linear-gradient(180deg, rgba(255, 255, 224, 0.04) 0%, rgba(255, 255, 0, 0.02) 50%, rgba(255, 255, 224, 0.01) 100%);
+}
+.plant-image-container[data-light-intensity="0.8"]::before { 
+  opacity: 0.18; 
+  background: linear-gradient(180deg, rgba(255, 255, 240, 0.05) 0%, rgba(255, 255, 224, 0.025) 50%, rgba(255, 255, 240, 0.015) 100%);
+}
+.plant-image-container[data-light-intensity="0.9"]::before { 
+  opacity: 0.22; 
+  background: linear-gradient(180deg, rgba(255, 255, 250, 0.06) 0%, rgba(255, 255, 240, 0.03) 50%, rgba(255, 255, 250, 0.02) 100%);
+}
+.plant-image-container[data-light-intensity="1.0"]::before { 
+  opacity: 0.25; 
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 250, 0.04) 50%, rgba(255, 255, 255, 0.025) 100%);
+}
 
 /* Water Drop Animation */
 .water-drop {
