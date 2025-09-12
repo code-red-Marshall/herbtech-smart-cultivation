@@ -2,7 +2,7 @@
 
 import { Home, Settings, LogOut, BarChart3, Leaf } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface SidebarRailProps {
   className?: string;
@@ -10,6 +10,19 @@ interface SidebarRailProps {
 
 export function SidebarRail({ className = '' }: SidebarRailProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  
+  const handleLogout = () => {
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('herbtech-loggedIn');
+      }
+    } catch (_) {
+      // ignore
+    }
+    // Navigate to login after clearing session
+    router.push('/login');
+  };
   
   const navItems = [
     { name: 'Dashboard', href: '/', icon: Home },
@@ -47,6 +60,7 @@ export function SidebarRail({ className = '' }: SidebarRailProps) {
         <button
           className="p-3 rounded-xl text-slate-500 hover:bg-red-50 hover:text-red-600 transition-all duration-200 flex flex-col items-center justify-center hover:scale-102 max-w-[72px] w-full group"
           title="Logout"
+          onClick={handleLogout}
         >
           <LogOut className="w-4 h-4 mb-1.5 group-hover:text-red-600" />
           <span className="text-xs font-medium">Logout</span>
