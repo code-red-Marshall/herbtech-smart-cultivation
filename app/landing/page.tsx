@@ -9,16 +9,6 @@ import Link from 'next/link';
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex flex-col">
-      {/* Header */}
-      <header className="w-full p-6">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <HerbTechLogo size="lg" />
-          <div className="text-sm text-slate-600 font-medium">
-            Smart Cultivation System
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -27,9 +17,6 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-4 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/30 mb-8">
               <HerbTechLogo size="xl" />
               <div className="text-left">
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                  HerbTech
-                </h1>
                 <p className="text-lg text-slate-600 font-medium">
                   Smart Cultivation System
                 </p>
@@ -64,38 +51,6 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Feature Preview */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30 hover:bg-white/80 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Leaf className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Smart Monitoring</h3>
-              <p className="text-slate-600 text-sm">
-                Real-time plant health tracking with intelligent environmental controls
-              </p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30 hover:bg-white/80 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Analytics Dashboard</h3>
-              <p className="text-slate-600 text-sm">
-                Comprehensive data insights and performance metrics
-              </p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30 hover:bg-white/80 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Settings className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Precision Control</h3>
-              <p className="text-slate-600 text-sm">
-                Automated systems with customizable parameters
-              </p>
-            </div>
-          </div>
         </div>
       </main>
 
