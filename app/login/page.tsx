@@ -30,7 +30,7 @@ export default function LoginPage() {
   useEffect(() => {
     const loggedIn = localStorage.getItem('herbtech-loggedIn') === 'true';
     if (loggedIn) {
-      router.push('/');
+      router.push('/dashboard');
     }
   }, [router]);
 
@@ -44,7 +44,7 @@ export default function LoginPage() {
 
     if (username === 'admin' && password === 'password') {
       localStorage.setItem('herbtech-loggedIn', 'true');
-      router.push('/');
+      router.push('/dashboard');
     } else {
       setError('Invalid credentials. Use admin/password for demo.');
     }

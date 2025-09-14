@@ -36,7 +36,7 @@ export function UniversalNavigation() {
   };
 
   const navigationItems = [
-    { name: 'Dashboard', href: '/', icon: Home, description: 'Main dashboard view' },
+    { name: 'Dashboard', href: '/dashboard', icon: Home, description: 'Main dashboard view' },
     { name: 'Analytics', href: '/charts', icon: BarChart3, description: 'Data analysis and charts' },
     { name: 'Settings', href: '/settings', icon: Settings, description: 'System configuration' },
   ];

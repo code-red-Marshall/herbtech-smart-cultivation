@@ -25,7 +25,7 @@ export function SidebarRail({ className = '' }: SidebarRailProps) {
   };
   
   const navItems = [
-    { name: 'Dashboard', href: '/', icon: Home },
+    { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Plant Pod Demo', href: '/pod-demo', icon: Leaf },
     { name: 'Charts', href: '/charts', icon: BarChart3 },
     { name: 'Settings', href: '/settings', icon: Settings },

@@ -14,10 +14,14 @@ interface PlantPodProps {
     npk: string;
     lux: string;
   };
+  /** Optional external trigger to play watering animation */
+  isWatering?: boolean;
+  /** Optional: hide the built-in watering button when controlling externally */
+  showWaterButton?: boolean;
 }
 
 // PlantPod Component - Plant Roots Connected to Soil with Synchronized Tint
-export default function PlantPod({ name, imageSrc, lightIntensity, metrics }: PlantPodProps) {
+export default function PlantPod({ name, imageSrc, lightIntensity, metrics, isWatering: externalWatering, showWaterButton = true }: PlantPodProps) {
   const [isWatering, setIsWatering] = useState(false);
 
   const handleWatering = () => {
@@ -25,6 +29,15 @@ export default function PlantPod({ name, imageSrc, lightIntensity, metrics }: Pl
     // Reset watering state after animation completes
     setTimeout(() => setIsWatering(false), 3000);
   };
+
+  // Sync with external watering trigger when provided
+  React.useEffect(() => {
+    if (externalWatering) {
+      setIsWatering(true);
+      const t = setTimeout(() => setIsWatering(false), 3000);
+      return () => clearTimeout(t);
+    }
+  }, [externalWatering]);
 
   return (
     <div className="plant-pod-container">
@@ -69,13 +82,15 @@ export default function PlantPod({ name, imageSrc, lightIntensity, metrics }: Pl
       </div>
       
       {/* Watering Button */}
-      <button 
-        className="watering-button"
-        onClick={handleWatering}
-        disabled={isWatering}
-      >
-        {isWatering ? '💧 Watering...' : '💧 Water Plant'}
-      </button>
+      {showWaterButton && (
+        <button 
+          className="watering-button"
+          onClick={handleWatering}
+          disabled={isWatering}
+        >
+          {isWatering ? '💧 Watering...' : '💧 Water Plant'}
+        </button>
+      )}
     </div>
   );
 }
