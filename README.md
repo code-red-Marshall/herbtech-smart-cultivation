@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-4. Try it in your browser: deluxe-platypus-d1a76e.netlify.app
+4. Try it in your browser: [View the website](https://deluxe-platypus-d1a76e.netlify.app)
 
 ## Animated Plants
 
